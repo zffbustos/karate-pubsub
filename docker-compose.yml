@@ -1,0 +1,24 @@
+---
+version: "3.9"
+
+services:
+  awslocal:
+    image: 012321959326.dkr.ecr.us-west-2.amazonaws.com/localstack/localstack:3.0.0
+    environment:
+      - SERVICES=sqs,sns,s3
+      - AWS_DEFAULT_REGION=us-west-2
+      - DEBUG=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    ports:
+      - '4566-4597:4566-4597'
+    healthcheck:
+      test: 
+        - CMD
+        - bash
+        - -c
+        - |
+          aws --endpoint http://localhost:4566/ sqs list-queues
+        
+      interval: 5s
+      timeout: 10s
+      start_period: 10s
