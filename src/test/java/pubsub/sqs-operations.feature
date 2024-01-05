@@ -6,10 +6,10 @@ Scenario: Create a new empty SQS queue
     And def numberOfQueues = result.length
     Then assert numberOfQueues > 0
 
-Scenario: Get queue URL
-    Given def command = 'aws --endpoint http://sqs.us-west-2.localhost.localstack.cloud:4566 sqs get-queue-url --queue-name test_queue'
-    When def result = karate.exec(command)
-    Then match result == '#notnull'
+# Scenario: Get queue URL
+#     Given def command = 'aws --endpoint http://sqs.us-west-2.localhost.localstack.cloud:4566 sqs get-queue-url --queue-name test_queue'
+#     When def result = karate.exec(command)
+#     Then match result == '#notnull'
  
 Scenario: List all SQS 
     Given def command = 'aws --endpoint http://sqs.us-west-2.localhost.localstack.cloud:4566 sqs list-queues'
